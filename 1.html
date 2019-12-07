@@ -12,106 +12,12 @@
 <meta name="twitter:card" content="summary_large_image" /> 
 <meta name="twitter:site:id" content="mogya" /> 
 
-
 <title>ギガントおちんちんランキング</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<style>
-body{
-  width:320px;
-}
-.title{
-  font-size:1.5rem;
-}
-.title{
-  font-size:1.5rem;
-}
-.container{
-  margin-bottom: 10px;
-}
-#area_result .message-body {
-  background: #fff;
-  border: 1px solid #222;
-  border-top: none;
-}
-.loading{
-  text-align: center;
-  font-size: 10rem;
-}
-
-</style>
+<script type=”text/javascript”> 
+  setTimeout(“link()”, 0); function link(){ location.href=’/index.html’; }
+</script>
 </head>
 <body>
-<section id="app" class="section">
-  <div v-show="loading" class="loading modal" :class="{ 'is-active':loading }">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <i class="fas fa-spinner fa-spin"></i>
-    </div>
-  </div>
-  <div id="area_input" class="container">
-    <h1 class="title">ギガントおちんちんランキング</h1>
-    <p class="subtitle">あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！</p>
-  </div>
-  <div v-show="!showResult" id="area_input" class="container">
-    <p class="subtitle"><i class="fas fa-edit"></i><a href="https://qiita.com/">測定方法</a>を参考に、太さを入力してね！</p>
-    <img src="img/how_to_calc.png" style="width:278px;height:278px;">
-    <div class="field">
-      <label class="label" for="input_name">おなまえ</label>
-      <div class="control">
-        <input class="input" type="text" id="input_name" placefolder="ななし" v-model="name" >
-      </div>
-    </div>
-    <div class="field">
-      <label class="label" for="input_contribution">cm(mmは切り捨て)</label>
-      <div class="control">
-        <input class="input" type="number" id="input_contribution" placefolder="200" v-model="contribution" >
-      </div>
-    </div>
-    <div class="field is-grouped">
-      <div class="control">
-        <button :disabled="!submitable" @click="onSubmit" class="button is-primary is-large">判定</button>
-      </div>
-    </div>
-    <div class="field">
-	    <ul>
-        <li><i class="fas fa-lock"></i>入力された情報はどこにも送信されません(アクセス解析もつけてません)</li>
-        <li><i class="fas fa-lock"></i><a href="https://github.com/mogya/ohinRank">ソースコード</a>で確認できるよ</li>
-        <li><i class="fas fa-lock-open"></i>Twitterで公開したら、もちろん世界中に大公開だ！きみの大きさを知ってもらおう！</li>
-	    </ul>
-    </div>
-  </div>
-  <div v-show="debug || showResult" id="area_result" class="message is-primary">
-    <div class="message-header">
-      <p>判定</p>
-      <button @click="onClickResultClose" class="delete" aria-label="delete"></button>
-    </div>
-    <div class="message-body">
-      <div ref="area_result_text" >
-        <div v-if="contribution > maxContribution">
-          <img src="img/francepan_boy.png" style="width:200px;height:188px" />
-          <p>{{name}}さんのcontribution {{contribution}}は、Qiitaユーザー20万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>どんな入力欄にも境界値テストを欠かさないその姿勢が素晴らしいスコアを支えているのですね！</p>
-          <p>ちなみに解答は、このパターンを含めて6ケース用意していますよ</p>
-        </div>
-      </div>
-      <div class="twitter">
-        <p><a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/qiitaRank/` target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a></p>
-       </a>
-      </div>
-    </div>
-  </div>
-  <div id="area_list" class="container">
-    <ul>
-      <li><a href='https://help.qiita.com/ja/articles/qiita-contribution' target='_blank'>Contributionとは - Qiita:Support</a></li>
-      <li><a href='https://qiita.com//t_nakayama0714/items/07ce8bf3501268f96fe3#contribution%E3%81%AE%E5%88%86%E5%B8%83' target='_blank'>Qiitaのあれこれをひたすら分析してランキング - Qiita</a></li>
-      <li>creater: <a href='https://twitter.com/mogya' target='_blank'>mogya</a></li>
-      <li>source code: <a href='https://github.com/mogya/qiitaRank/' target='_blank'>mogya/qiitaRank: Qiitaのcontributions値から,日本でどのくらいのエンジニアなのかを見積もります</a></li>
-    </ul>
-  </div>
-
-</section>
 </body>
 </html>
 

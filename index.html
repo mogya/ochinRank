@@ -53,8 +53,11 @@ body{
     <p class="subtitle">あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！</p>
   </div>
   <div v-show="!showResult" id="area_input" class="container">
-    <p class="subtitle"><i class="fas fa-edit"></i><a href="https://qiita.com/">測定方法</a>を参考に、太さを入力してね！</p>
-    <img src="img/how_to_calc.png" style="width:278px;height:278px;">
+    <p class="subtitle"><i class="fas fa-edit"></i><a >測定方法</a>を参考に、太さを入力してね！</p>
+    <img src="img/howto1.jpg" style="width:100%;">
+    <img src="img/howto2.jpg" style="width:100%;">
+    <img src="img/howto3.jpg" style="width:100%;">
+    <img src="img/howto4.jpg" style="width:100%;">
     <div class="field">
       <label class="label" for="input_name">おなまえ</label>
       <div class="control">
@@ -86,62 +89,62 @@ body{
     </div>
     <div class="message-body">
       <div v-if="value > maxvalue">
-        <img src="img/illust_torokko_trolley_rail_businessman_out.png" style="width:200px;height:188px" />
+        <img src="img/cannon.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}は、日本人男性6千万人のうち、上位{{rank}}%くらいに位置します。</p>
         <p>🙅‍♀️ないから。測定方法をもう一回確認してね</p>
       </div>
       <div v-else-if="value >= godvalue">
-        <img src="img/illust_network_dennou_sekai_man.png" style="width:200px;height:195px" />
+        <img src="img/cannon.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
         <p>めっちゃ巨根ですね👍</p>
         <div class="twitter">
           <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
-              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/5.html`
+              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
           </p>
         </div>
       </div>
       <div v-else-if="percentage < 0.01">
-        <img src="img/illust_computer_hacker.png" style="width:200px;height:199px" />
+        <img src="img/radish.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
         <p>巨根ですね🐴</p>
         <div class="twitter">
           <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
-              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/4.html`
+              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
           </p>
         </div>
       </div>
       <div v-else-if="percentage < 1">
-        <img src="img/illust_computer_hacker_white1.png" style="width:200px;height:200px" />
+        <img src="img/coffee.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
         <p>平均的サイズと言えるでしょう🐼</p>
         <div class="twitter">
           <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
-              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/3.html`
+              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
           </p>
         </div>
       </div>
       <div v-else-if="percentage < 15">
-        <img src="img/illust_computer_hacker_white1.png" style="width:200px;height:200px" />
+        <img src="img/battery.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
         <p>ちょっと細いほうかもしれません🦒</p>
         <div class="twitter">
           <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
-              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/2.html`
+              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
           </p>
         </div>
       </div>
       <div v-else>
-        <img src="img/illust_smartphone_neru_schoolboy.png" style="width:200px;height:142px" />
+        <img src="img/pencil.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
-        <p>かなり細い方かも...🦄</p>
+        <p>かなり細い方かも🦄</p>
         <div class="twitter">
           <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
-              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/1.html`
+              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
           </p>
         </div>
       </div>
@@ -173,7 +176,7 @@ const point_classes = [
 var app = new Vue({
   el: "#app",
   data: {
-    debug: false,
+    debug: true,
     loading: false,
     showResult: false,
     name: "",

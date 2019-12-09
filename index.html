@@ -11,8 +11,6 @@
 <meta property="og:description" content="あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！" /> 
 <meta name="twitter:card" content="summary_large_image" /> 
 <meta name="twitter:site:id" content="mogya" /> 
-
-
 <title>ギガントおちんちんランキング</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -87,38 +85,65 @@ body{
       <button @click="onClickResultClose" class="delete" aria-label="delete"></button>
     </div>
     <div class="message-body">
-        <div v-if="value > maxvalue">
-          <img src="img/illust_torokko_trolley_rail_businessman_out.png" style="width:200px;height:188px" />
-          <p>{{name}}さんのvalue {{value}}は、日本人男性6千万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>ほんとに！？</p>
+      <div v-if="value > maxvalue">
+        <img src="img/illust_torokko_trolley_rail_businessman_out.png" style="width:200px;height:188px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}は、日本人男性6千万人のうち、上位{{rank}}%くらいに位置します。</p>
+        <p>🙅‍♀️ないから。測定方法をもう一回確認してね</p>
+      </div>
+      <div v-else-if="value >= godvalue">
+        <img src="img/illust_network_dennou_sekai_man.png" style="width:200px;height:195px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>めっちゃ巨根ですね👍</p>
+        <div class="twitter">
+          <p>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
+              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+          </p>
         </div>
-        <div v-else-if="value >= godvalue">
-          <img src="img/illust_network_dennou_sekai_man.png" style="width:200px;height:195px" />
-          <p>{{name}}さんのvalue {{value}}は、Qiitaユーザー20万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>めっちゃ巨根ですね</p>
+      </div>
+      <div v-else-if="percentage < 0.01">
+        <img src="img/illust_computer_hacker.png" style="width:200px;height:199px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>巨根ですね🐴</p>
+        <div class="twitter">
+          <p>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
+              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+          </p>
         </div>
-        <div v-else-if="percentage < 0.01">
-          <img src="img/illust_computer_hacker.png" style="width:200px;height:199px" />
-          <p>{{name}}さんのvalue {{value}}は、Qiitaユーザー20万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>巨根ですね</p>
+      </div>
+      <div v-else-if="percentage < 1">
+        <img src="img/illust_computer_hacker_white1.png" style="width:200px;height:200px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>平均的サイズと言えるでしょう🐼</p>
+        <div class="twitter">
+          <p>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
+              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+          </p>
         </div>
-        <div v-else-if="percentage < 1">
-          <img src="img/illust_computer_hacker_white1.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのvalue {{value}}は、Qiitaユーザー20万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>平均的サイズと言えるでしょう</p>
+      </div>
+      <div v-else-if="percentage < 15">
+        <img src="img/illust_computer_hacker_white1.png" style="width:200px;height:200px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>ちょっと細いほうかもしれません🦒</p>
+        <div class="twitter">
+          <p>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
+              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+          </p>
         </div>
-        <div v-else-if="percentage < 15">
-          <img src="img/illust_computer_hacker_white1.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのvalue {{value}}は、Qiitaユーザー20万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>ちょっと細いほうかもしれません</p>
+      </div>
+      <div v-else>
+        <img src="img/illust_smartphone_neru_schoolboy.png" style="width:200px;height:142px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>かなり細い方かも...🦄</p>
+        <div class="twitter">
+          <p>
+            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/`
+              target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a>
+          </p>
         </div>
-        <div v-else>
-          <img src="img/illust_smartphone_neru_schoolboy.png" style="width:200px;height:142px" />
-          <p>{{name}}さんのvalue {{value}}は、Qiitaユーザー20万人のうち、{{rank}}位くらいに位置します。</p>
-          <p>かなり細い方かも...</p>
-        </div>      <div class="twitter">
-        <p><a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/` target='_blank'><i class="fab fa-twitter-square"></i>この結果をツイートする</a></p>
-       </a>
       </div>
     </div>
   </div>
@@ -148,6 +173,7 @@ const point_classes = [
 var app = new Vue({
   el: "#app",
   data: {
+    debug: false,
     loading: false,
     showResult: false,
     name: "",
@@ -202,9 +228,6 @@ var app = new Vue({
       this.debug_log("user_classes:");
       this.debug_log(r);
       return r;
-    },
-    debug: function(){
-      return false;
     }
   },
   methods: {

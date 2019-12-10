@@ -78,7 +78,7 @@ body{
     <div class="field">
 	    <ul>
         <li><i class="fas fa-lock"></i>入力された情報はどこにも送信されません(アクセス解析もつけてません)(<a href="https://github.com/mogya/ohinRank">ソースコード</a>も確認できるよ)</li>
-        <li><i class="fas fa-lock-open"></i>Twitterで公開したら、もちろん世界中に大公開だ！きみの偉大さを知ってもらおう！</li>
+        <li><i class="fas fa-lock-open"></i>Twitterで公開したら、もちろんみんなに大公開だ！フォロワーさんたちにきみの偉大さを知ってもらおう！</li>
 	    </ul>
     </div>
   </div>
@@ -91,9 +91,9 @@ body{
       <div v-if="value > maxvalue">
         <img src="img/cannon.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかでトップクラスに位置します。</p>
-        <p>🙅‍♀️たぶんそんなことはないから。測定方法をもう一回確認してね</p>
+        <p>🙅‍♀️たぶんそんなことはないから、測定方法をもう一回確認してね</p>
       </div>
-      <div v-else-if="percentage > 80">
+      <div v-else-if="percentage < 20">
         <img src="img/cannon.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{percentage_num}}%くらいに位置します。</p>
         <p>めっちゃ巨根ですね👍</p>
@@ -104,7 +104,7 @@ body{
           </p>
         </div>
       </div>
-      <div v-else-if="percentage > 60">
+      <div v-else-if="percentage < 40">
         <img src="img/radish.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
         <p>巨根と言えるでしょう🐴</p>
@@ -115,7 +115,7 @@ body{
           </p>
         </div>
       </div>
-      <div v-else-if="percentage > 40">
+      <div v-else-if="percentage < 60">
         <img src="img/coffee.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{percentage_num}}%くらいに位置します。</p>
         <p>平均的サイズと言えるでしょう🐼</p>
@@ -126,7 +126,7 @@ body{
           </p>
         </div>
       </div>
-      <div v-else-if="percentage > 20">
+      <div v-else-if="percentage < 80">
         <img src="img/battery.png" style="width:200px;height:200px" />
         <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
         <p>ちょっと細いほうかもしれません🦒</p>
@@ -136,6 +136,11 @@ body{
               target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
           </p>
         </div>
+      </div>
+      <div v-else-if="value < minvalue">
+        <img src="img/pencil.png" style="width:200px;height:200px" />
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、かなり細いほうです。</p>
+        <p>もしかして測り間違えの可能性もあると思うので、もう一度全力で測ってみてね</p>
       </div>
       <div v-else>
         <img src="img/pencil.png" style="width:200px;height:200px" />
@@ -164,14 +169,15 @@ body{
 <script type="text/javascript">
 const user_count = 60000000;
 const point_classes = [
-     {value : 0, percentage : 100},
-     {value : 3.14, percentage : 1.3},
-     {value : 6.28, percentage : 15.7},
-     {value : 9.42, percentage : 28.7},
-     {value : 12.56, percentage : 39.7},
-     {value : 15.7, percentage : 13.7},
-     {value : 18.84, percentage : 0.9},
-     {value : Infinity, percentage : 0},
+  // value:計測値 percentage:上位何%に入るか
+  {value: 0, percentage: 100 },
+  {value : 3.14, percentage : 100},
+  {value : 6.28, percentage : 98.7},
+  {value : 9.42, percentage : 83},
+  {value : 12.56, percentage : 54.4},
+  {value : 15.7, percentage : 14.6},
+  {value : 18.84, percentage : 0.9},
+  {value : Infinity, percentage : 0},
 ];
 var app = new Vue({
   el: "#app",
@@ -186,6 +192,9 @@ var app = new Vue({
   computed: {
     maxvalue: function () {
       return point_classes[point_classes.length-2].value;
+    },
+    minvalue: function () {
+      return point_classes[1].value;
     },
     rank: function () {
       let r = 1;
@@ -246,7 +255,7 @@ var app = new Vue({
       this.tweet_text = encodeURI(this.$refs.area_result_text.textContent);
     },
     debug_log: function(msg){
-      // console.log(msg);
+      if(this.debug) { console.log(msg) }
     }
   }
 })

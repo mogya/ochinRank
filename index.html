@@ -90,12 +90,12 @@ body{
     <div class="message-body">
       <div v-if="value > maxvalue">
         <img src="img/cannon.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}は、日本人男性6千万人のうち、上位{{rank}}%くらいに位置します。</p>
-        <p>🙅‍♀️ないから。測定方法をもう一回確認してね</p>
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかでトップクラスに位置します。</p>
+        <p>🙅‍♀️たぶんそんなことはないから。測定方法をもう一回確認してね</p>
       </div>
-      <div v-else-if="value >= godvalue">
+      <div v-else-if="percentage > 80">
         <img src="img/cannon.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{percentage_num}}%くらいに位置します。</p>
         <p>めっちゃ巨根ですね👍</p>
         <div class="twitter">
           <p>
@@ -104,10 +104,10 @@ body{
           </p>
         </div>
       </div>
-      <div v-else-if="percentage < 0.01">
+      <div v-else-if="percentage > 60">
         <img src="img/radish.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
-        <p>巨根ですね🐴</p>
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+        <p>巨根と言えるでしょう🐴</p>
         <div class="twitter">
           <p>
             <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/4.html`
@@ -115,9 +115,9 @@ body{
           </p>
         </div>
       </div>
-      <div v-else-if="percentage < 1">
+      <div v-else-if="percentage > 40">
         <img src="img/coffee.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{percentage_num}}%くらいに位置します。</p>
         <p>平均的サイズと言えるでしょう🐼</p>
         <div class="twitter">
           <p>
@@ -126,9 +126,9 @@ body{
           </p>
         </div>
       </div>
-      <div v-else-if="percentage < 15">
+      <div v-else-if="percentage > 20">
         <img src="img/battery.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
         <p>ちょっと細いほうかもしれません🦒</p>
         <div class="twitter">
           <p>
@@ -139,7 +139,7 @@ body{
       </div>
       <div v-else>
         <img src="img/pencil.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank}}%くらいに位置します。</p>
+        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
         <p>かなり細い方かも🦄</p>
         <div class="twitter">
           <p>
@@ -162,7 +162,7 @@ body{
 </body>
 </body>
 <script type="text/javascript">
-const user_count = 200000;
+const user_count = 60000000;
 const point_classes = [
      {value : 0, percentage : 100},
      {value : 3.14, percentage : 1.3},
@@ -186,9 +186,6 @@ var app = new Vue({
   computed: {
     maxvalue: function () {
       return point_classes[point_classes.length-2].value;
-    },
-    godvalue: function () {
-      return point_classes[point_classes.length-3].value;
     },
     rank: function () {
       let r = 1;

@@ -53,11 +53,20 @@ body{
     <p class="subtitle">あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！</p>
   </div>
   <div v-show="!showResult" id="area_input" class="container">
-    <p class="subtitle"><i class="fas fa-edit"></i><a >測定方法</a>を参考に、太さを入力してね！</p>
-    <img src="img/howto1.jpg" style="width:100%;">
-    <img src="img/howto2.jpg" style="width:100%;">
-    <img src="img/howto3.jpg" style="width:100%;">
-    <img src="img/howto4.jpg" style="width:100%;">
+    <p class="subtitle">
+      <i class="fas fa-edit"></i>
+      <a @click="showHowto = !showHowto">測定方法</a>を参考に、太さを入力してね！
+    </p>
+    <div v-show="showHowto" id="area_howto" class="container">
+      <img src="img/howto1.jpg" style="width:100%;">
+      <p>用意するもの：トイレットペーパー、定規</p>
+      <img src="img/howto2.jpg" style="width:100%;">
+      <p>全力で太くしてください</p>
+      <img src="img/howto3.jpg" style="width:100%;">
+      <p>トイレットペーパーを巻いて太さを測ります。カリのところじゃなくて、竿部分の太さを測ってね</p>
+      <img src="img/howto4.jpg" style="width:100%;">
+      <p>さっき巻いたトイレットペーパーを測りましょう</p>
+    </div>
     <div class="field">
       <label class="label" for="input_name">おなまえ</label>
       <div class="control">
@@ -88,71 +97,49 @@ body{
       <button @click="onClickResultClose" class="delete" aria-label="delete"></button>
     </div>
     <div class="message-body">
-      <div v-if="value > maxvalue">
-        <img src="img/cannon.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかでトップクラスに位置します。</p>
-        <p>🙅‍♀️たぶんそんなことはないから、測定方法をもう一回確認してね</p>
-      </div>
-      <div v-else-if="percentage < 20">
-        <img src="img/cannon.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{percentage_num}}%くらいに位置します。</p>
-        <p>めっちゃ巨根ですね👍</p>
-        <div class="twitter">
-          <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/5.html`
-              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
-          </p>
+      <div ref="area_result_text">
+        <div v-if="msg_pattern==0">
+          <img src="img/cannon.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかでトップクラスに位置します。</p>
+          <p>🙅‍♀️たぶんそんなことはないから、測定方法をもう一回確認してね</p>
         </div>
-      </div>
-      <div v-else-if="percentage < 40">
-        <img src="img/radish.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
-        <p>巨根と言えるでしょう🐴</p>
-        <div class="twitter">
-          <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/4.html`
-              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
-          </p>
+        <div v-else-if="msg_pattern==1">
+          <img src="img/cannon.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{percentage_num}}%くらいに位置します。</p>
+          <p>めっちゃ巨根ですね👍</p>
         </div>
-      </div>
-      <div v-else-if="percentage < 60">
-        <img src="img/coffee.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{percentage_num}}%くらいに位置します。</p>
-        <p>平均的サイズと言えるでしょう🐼</p>
-        <div class="twitter">
-          <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/3.html`
-              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
-          </p>
+        <div v-else-if="msg_pattern==2">
+          <img src="img/radish.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+          <p>巨根と言えるでしょう🐴</p>
         </div>
-      </div>
-      <div v-else-if="percentage < 80">
-        <img src="img/battery.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
-        <p>ちょっと細いほうかもしれません🦒</p>
-        <div class="twitter">
-          <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/2.html`
-              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
-          </p>
+        <div v-else-if="msg_pattern==3">
+          <img src="img/coffee.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{percentage_num}}%くらいに位置します。</p>
+          <p>平均的サイズと言えるでしょう🐼</p>
         </div>
-      </div>
-      <div v-else-if="value < minvalue">
-        <img src="img/pencil.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、かなり細いほうです。</p>
-        <p>もしかして測り間違えの可能性もあると思うので、もう一度全力で測ってみてね</p>
-      </div>
-      <div v-else>
-        <img src="img/pencil.png" style="width:200px;height:200px" />
-        <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
-        <p>かなり細い方かも🦄</p>
-        <div class="twitter">
-          <p>
-            <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=https://mogya.github.io/ohinRank/1.html`
-              target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
-          </p>
+        <div v-else-if="msg_pattern==4">
+          <img src="img/battery.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+          <p>ちょっと細いほうかもしれません🦒</p>
         </div>
+        <div v-else-if="msg_pattern==5">
+          <img src="img/pencil.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+          <p>かなり細い方かも🦄</p>
+          </div>
+        <div v-else>
+          <img src="img/pencil.png" style="width:200px;height:200px" />
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、かなり細いほうです。</p>
+          <p>もしかして測り間違えの可能性もあると思うので、もう一度全力で測ってみてね</p>
+          </div>
       </div>
+    </div>
+    <div class="twitter" v-if="tweet_url != ''">
+      <p>
+        <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=${tweet_url}`
+          target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
+      </p>
     </div>
   </div>
   <div id="area_list" class="container">
@@ -182,12 +169,14 @@ const point_classes = [
 var app = new Vue({
   el: "#app",
   data: {
-    debug: true,
+    debug: false,
     loading: false,
     showResult: false,
+    showHowto: false,
     name: "",
     value: 0,
     tweet_text: '',
+    tweet_url: '',
   },
   computed: {
     maxvalue: function () {
@@ -226,6 +215,23 @@ var app = new Vue({
       }
       return ret;
     },
+    msg_pattern: function() {
+      if (this.value > this.maxvalue) { 
+        return 0
+      } else if (this.percentage < 20) {
+        return 1
+      } else if (this.percentage < 40) {
+        return 2
+      } else if (this.percentage < 60) {
+        return 3
+      } else if (this.percentage < 80) {
+        return 4
+      } else if (this.percentage < 100) {
+        return 5
+      } else {
+        return 6
+      }
+    },
     submitable: function() {
       return !!(this.name && this.value >= 0 )
     },
@@ -245,14 +251,18 @@ var app = new Vue({
       setTimeout(()=>{
         this.showResult = true;
         this.loading = false;
-        this.updateTweetText();
+        this.updateTweet();
       }, 1000)
     },
     onClickResultClose: function(){
       this.showResult = false;
     },
-    updateTweetText: function(){
+    updateTweet: function(){
       this.tweet_text = encodeURI(this.$refs.area_result_text.textContent);
+      this.tweet_url = `https://mogya.github.io/ohinRank/${this.msg_pattern}.html`;
+      if (this.msg_pattern < 1 || this.msg_pattern > 5) {
+        this.tweet_url = ``;
+      }
     },
     debug_log: function(msg){
       if(this.debug) { console.log(msg) }

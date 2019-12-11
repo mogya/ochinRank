@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js"></script>
 <style>
 body{
   width:320px;
@@ -37,7 +38,20 @@ body{
   text-align: center;
   font-size: 10rem;
 }
-
+.slide-toggle-enter-active,
+.slide-toggle-leave-active {
+     transition: height .3s;
+}
+.slide-toggle-enter-active {
+     height: 285px;
+}
+.slide-toggle-enter,
+.slide-toggle-leave-active {
+    height: 0;
+}
+.slide-toggle-leave {
+    height: 285px;
+} 
 </style>
 </head>
 <body>
@@ -48,8 +62,12 @@ body{
       <i class="fas fa-spinner fa-spin"></i>
     </div>
   </div>
-  <div id="area_input" class="container">
-    <h1 class="title">ギガントおちんちんランキング</h1>
+  <div class="container">
+    <h1 class="title"><a href='./index.html'>
+      ギガント<br />
+      おちんちん<br />
+      ランキング🚀
+    </a></h1>
     <p class="subtitle">あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！</p>
   </div>
   <div v-show="!showResult" id="area_input" class="container">
@@ -57,16 +75,18 @@ body{
       <i class="fas fa-edit"></i>
       <a @click="showHowto = !showHowto">測定方法</a>を参考に、太さを入力してね！
     </p>
-    <div v-show="showHowto" id="area_howto" class="container">
-      <img src="img/howto1.jpg" style="width:100%;">
-      <p>用意するもの：トイレットペーパー、定規</p>
-      <img src="img/howto2.jpg" style="width:100%;">
-      <p>全力で太くしてください</p>
-      <img src="img/howto3.jpg" style="width:100%;">
-      <p>トイレットペーパーを巻いて太さを測ります。カリのところじゃなくて、竿部分の太さを測ってね</p>
-      <img src="img/howto4.jpg" style="width:100%;">
-      <p>さっき巻いたトイレットペーパーを測りましょう</p>
-    </div>
+    <transition name="slide-toggle">
+      <div v-show="showHowto" id="area_howto" class="container">
+        <img src="img/howto1.jpg" style="width:100%;">
+        <p>用意するもの：トイレットペーパー、定規、おちんちん</p>
+        <img src="img/howto2.jpg" style="width:100%;">
+        <p>全力で太くしてください(爆発しないように注意してね)</p>
+        <img src="img/howto3.jpg" style="width:100%;">
+        <p>トイレットペーパーを巻いて太さを測ります。カリのところじゃなくて、竿部分の太さを測ってね</p>
+        <img src="img/howto4.jpg" style="width:100%;">
+        <p>さっき巻いたトイレットペーパーを測りましょう</p>
+      </div>
+    </transition>
     <div class="field">
       <label class="label" for="input_name">おなまえ</label>
       <div class="control">
@@ -74,9 +94,9 @@ body{
       </div>
     </div>
     <div class="field">
-      <label class="label" for="input_value">cm(小数も入力できます)</label>
+      <label class="label" for="input_value">cm(小数一桁まで入力できます)</label>
       <div class="control">
-        <input class="input" type="number" id="input_value" placefolder="200" v-model="value" >
+        <input class="input" type="number" step="0.1" id="input_value" placefolder="200" v-model="value" >
       </div>
     </div>
     <div class="field is-grouped">
@@ -94,57 +114,63 @@ body{
   <div v-show="debug || showResult" id="area_result" class="message is-primary">
     <div class="message-header">
       <p>判定</p>
-      <button @click="onClickResultClose" class="delete" aria-label="delete"></button>
+      <button @click="showResult = false" class="delete" aria-label="delete"></button>
     </div>
     <div class="message-body">
       <div ref="area_result_text">
         <div v-if="msg_pattern==0">
           <img src="img/cannon.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかでトップクラスに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかで一番です。</p>
           <p>🙅‍♀️たぶんそんなことはないから、測定方法をもう一回確認してね</p>
         </div>
         <div v-else-if="msg_pattern==1">
           <img src="img/cannon.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{percentage_num}}%くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{rank_num}}%人目くらいに位置します。</p>
           <p>めっちゃ巨根ですね👍</p>
         </div>
         <div v-else-if="msg_pattern==2">
           <img src="img/radish.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}%人目くらいに位置します。</p>
           <p>巨根と言えるでしょう🐴</p>
         </div>
         <div v-else-if="msg_pattern==3">
           <img src="img/coffee.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{percentage_num}}%くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{rank_num}}%人目くらいに位置します。</p>
           <p>平均的サイズと言えるでしょう🐼</p>
         </div>
         <div v-else-if="msg_pattern==4">
           <img src="img/battery.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}%人目くらいに位置します。</p>
           <p>ちょっと細いほうかもしれません🦒</p>
         </div>
         <div v-else-if="msg_pattern==5">
           <img src="img/pencil.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{percentage_num}}%くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}%人目くらいに位置します。</p>
           <p>かなり細い方かも🦄</p>
           </div>
         <div v-else>
           <img src="img/pencil.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、かなり細いほうです。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、一番細いみたいです。</p>
           <p>もしかして測り間違えの可能性もあると思うので、もう一度全力で測ってみてね</p>
           </div>
       </div>
     </div>
     <div class="twitter" v-if="tweet_url != ''">
       <p>
-        <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=${tweet_url}`
-          target='_blank'><i class="fab fa-twitter-square"></i>ツイート画面を開く</a>
+        <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=${tweet_url}` target='_blank'>
+          <i class="fab fa-twitter-square"></i>ツイート画面を開く
+        </a>
+      </p>
+    </div>
+    <div>
+      <p>
+        <a @click="showResult = false">
+          <i class="fas fa-arrow-circle-left"></i>もどる</a>
       </p>
     </div>
   </div>
   <div id="area_list" class="container">
     <ul>
-      <li><a href='http://pandora.nu/pha/ochinchin/' target='_blank'>ハイパーオチンチンランキング</a> ←元祖</li>
       <li>creater: <a href='https://twitter.com/mogya' target='_blank'>mogya</a></li>
       <li>source code: <a href='https://github.com/mogya/ohinRank/' target='_blank'>mogya/ohinRank</a></li>
     </ul>
@@ -166,6 +192,58 @@ const point_classes = [
   {value : 18.84, percentage : 0.9},
   {value : Infinity, percentage : 0},
 ];
+/**
+  * 数値を漢数字表記に変換
+  * @param  {String|Number} num - 半角数字
+  * @return {String} 漢数字表記
+  * @throws {TypeError} 半角数字以外の文字が含まれている場合
+  * @throws {RangeError} 数値が Number.MIN_SAFE_INTEGER ～ Number.MAX_SAFE_INTEGER の範囲外の場合
+  * https://note.kiriukun.com/entry/20181229-numbers-to-chinese-numerals
+  */
+function numbersToKanji(num) {
+  if (num === undefined || num === null || num === '') {
+    return '';
+  }
+  if (!(/^-?[0-9]+$/g.test(num))) {
+    throw new TypeError('半角数字以外の文字が含まれています。漢数字に変換できませんでした。-> ' + num);
+  }
+  num = Number(num);
+  if (!Number.isSafeInteger(num)) {
+    throw new RangeError('数値が ' + Number.MIN_SAFE_INTEGER + ' ～ ' + Number.MAX_SAFE_INTEGER + ' の範囲外です。漢数字に変換できませんでした。-> ' + num);
+  }
+  if (num === 0) {
+    return '零';
+  }
+  let ret = '';
+  if (num < 0) {
+    ret += 'マイナス';
+    num *= -1;
+  }
+  const numStr = num + '';
+  const kanjiNums = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+  const kanjiNames = ['十', '百', '千', '万', '億', '兆', '京', '垓', '𥝱', '穣', '溝', '澗', '正', '載', '極', '恒河沙', '阿僧祇', '那由他', '不可思議', '無量大数'];
+  const exponents = [1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68];
+  const exponentsLen = exponents.length;
+  for (let i = exponentsLen; i >= 0; --i) {
+    const bias = Math.pow(10, exponents[i]);
+    if (num >= bias) {
+      const top = Math.floor(num / bias);
+      if (top >= 10) {
+        ret += numbersToKanji(top);
+      } else {
+        if (top == 1 && exponents[i] <= 3) {
+          // ※先頭の数字が1、かつ指数が3 (千の位) 以下の場合のみ『一』をつけない
+        } else {
+          ret += kanjiNums[top];
+        }
+      }
+      ret += kanjiNames[i];
+      num -= top * bias;
+    }
+  }
+  ret += kanjiNums[num];
+  return ret;
+};
 var app = new Vue({
   el: "#app",
   data: {
@@ -186,27 +264,41 @@ var app = new Vue({
       return point_classes[1].value;
     },
     rank: function () {
+      if (!this.submitable) { return 0 }
       let r = 1;
       if (this.percentage !== 0){
         r = Math.ceil(user_count*this.percentage/100);
       }
-      this.debug_log(`rank(u):${user_count}`);
-      this.debug_log(`rank(p):${this.percentage}`);
-      this.debug_log(`rank:${r}`);
+      // this.debug_log(`rank(u):${user_count}`);
+      // this.debug_log(`rank(p):${this.percentage}`);
+      // this.debug_log(`rank:${r}`);
       return r;
     },
+    rank_num: function () {
+      if (!this.submitable) { return '' }
+      let ret = "";
+      if (this.rank < 10000000){
+        ret = numbersToKanji(this.rank)
+      }else{
+        // 四千六百六十三万三百十九番目、とか言われても意味分かんないので、万より下を切り捨てる
+        ret = numbersToKanji( Math.floor(this.rank/10000)*10000 )
+      }
+      return ret;
+    },
     percentage: function () {
+      if (!this.submitable) { return 0 }
       const c = this.user_classes;
       let p =
         (c[0].value-this.value) *
         (c[1].percentage-c[0].percentage) /
           (c[0].value-c[1].value) +
           c[0].percentage;
-      this.debug_log(`percentage:${p}`);
+      // this.debug_log(`percentage:${p}`);
       if (c[1].percentage === 0){ p = 0; }
       return p;
     },
     percentage_num: function(){
+      if (!this.submitable) { return '' }
       let ret = '';
       if (this.percentage > 1){
         ret = this.percentage.toString().replace(/([^0]\.[^0])(.*)/,"$1");
@@ -216,6 +308,7 @@ var app = new Vue({
       return ret;
     },
     msg_pattern: function() {
+      if (!this.submitable) { return 0 }
       if (this.value > this.maxvalue) { 
         return 0
       } else if (this.percentage < 20) {
@@ -233,10 +326,11 @@ var app = new Vue({
       }
     },
     submitable: function() {
-      return !!(this.name && this.value >= 0 )
+      return !!(this.name && this.value > 0 )
     },
     user_classes: function() {
-      const index = point_classes.findIndex((element)=>{
+      if (!this.submitable) { return }
+      const index = point_classes.findIndex((element) =>{
         return (this.value < element.value);
       });
       const r = [point_classes[index], point_classes[index-1]];
@@ -254,14 +348,11 @@ var app = new Vue({
         this.updateTweet();
       }, 1000)
     },
-    onClickResultClose: function(){
-      this.showResult = false;
-    },
     updateTweet: function(){
       this.tweet_text = encodeURI(this.$refs.area_result_text.textContent);
-      this.tweet_url = `https://mogya.github.io/ohinRank/${this.msg_pattern}.html`;
+      this.tweet_url = "https://mogya.github.io/ohinRank/"+this.msg_pattern+".html";
       if (this.msg_pattern < 1 || this.msg_pattern > 5) {
-        this.tweet_url = ``;
+        this.tweet_url = "";
       }
     },
     debug_log: function(msg){

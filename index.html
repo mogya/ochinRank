@@ -125,27 +125,27 @@ body{
         </div>
         <div v-else-if="msg_pattern==1">
           <img src="img/cannon.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{rank_num}}%人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{rank_num}}人目くらいに位置します。</p>
           <p>めっちゃ巨根ですね👍</p>
         </div>
         <div v-else-if="msg_pattern==2">
           <img src="img/radish.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}%人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}人目くらいに位置します。</p>
           <p>巨根と言えるでしょう🐴</p>
         </div>
         <div v-else-if="msg_pattern==3">
           <img src="img/coffee.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{rank_num}}%人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{rank_num}}人目くらいに位置します。</p>
           <p>平均的サイズと言えるでしょう🐼</p>
         </div>
         <div v-else-if="msg_pattern==4">
           <img src="img/battery.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}%人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}人目くらいに位置します。</p>
           <p>ちょっと細いほうかもしれません🦒</p>
         </div>
         <div v-else-if="msg_pattern==5">
           <img src="img/pencil.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}%人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}人目くらいに位置します。</p>
           <p>かなり細い方かも🦄</p>
           </div>
         <div v-else>
@@ -157,7 +157,7 @@ body{
     </div>
     <div class="twitter" v-if="tweet_url != ''">
       <p>
-        <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=${tweet_url}` target='_blank'>
+        <a :href=`https://twitter.com/intent/tweet?text=${tweet_text}&url=${tweet_url}&hashtags=${tweet_hashtag}` target='_blank'>
           <i class="fab fa-twitter-square"></i>ツイート画面を開く
         </a>
       </p>
@@ -255,6 +255,7 @@ var app = new Vue({
     value: 0,
     tweet_text: '',
     tweet_url: '',
+    tweet_hashtag: ''
   },
   computed: {
     maxvalue: function () {
@@ -350,7 +351,8 @@ var app = new Vue({
     },
     updateTweet: function(){
       this.tweet_text = encodeURI(this.$refs.area_result_text.textContent);
-      this.tweet_url = "https://mogya.github.io/ohinRank/"+this.msg_pattern+".html";
+      this.tweet_hashtag = encodeURI("おちんちんランキング");
+      this.tweet_url = "https://mogya.github.io/ohinRank/" + this.msg_pattern + ".html";
       if (this.msg_pattern < 1 || this.msg_pattern > 5) {
         this.tweet_url = "";
       }

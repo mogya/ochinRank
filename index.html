@@ -17,7 +17,14 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js"></script>
 <style>
+html{
+  width:100%;
+}
 body{
+  width: 320px;
+  margin: 0 auto;
+}
+.container{
   width:320px;
 }
 .title{
@@ -77,13 +84,13 @@ body{
     </p>
     <transition name="slide-toggle">
       <div v-show="showHowto" id="area_howto" class="container">
-        <img src="img/howto1.jpg" style="width:100%;">
+        <img src="img/howto1.jpg">
         <p>用意するもの：トイレットペーパー、定規、おちんちん</p>
-        <img src="img/howto2.jpg" style="width:100%;">
+        <img src="img/howto2.jpg">
         <p>全力で太くしてください(爆発しないように注意してね)</p>
-        <img src="img/howto3.jpg" style="width:100%;">
+        <img src="img/howto3.jpg">
         <p>トイレットペーパーを巻いて太さを測ります。カリのところじゃなくて、竿部分の太さを測ってね</p>
-        <img src="img/howto4.jpg" style="width:100%;">
+        <img src="img/howto4.jpg">
         <p>さっき巻いたトイレットペーパーを測りましょう</p>
       </div>
     </transition>

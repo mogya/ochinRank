@@ -214,7 +214,7 @@ const point_classes = [
 var app = new Vue({
   el: "#app",
   data: {
-    debug: true,
+    debug: false,
     loading: false,
     showResult: false,
     showHowto: false,
@@ -312,7 +312,7 @@ var app = new Vue({
       }, 1000)
     },
     updateTweet: function(){
-      this.tweet_text = encodeURI(this.$refs.area_result_text.textContent);
+      this.tweet_text = encodeURI(this.$refs.area_result_text.textContent.replace(/ +/g,''));
       this.tweet_hashtag = encodeURI("おちんちんランキング");
       this.tweet_url = "https://mogya.github.io/ohinRank/" + this.msg_pattern + ".html";
       if (this.msg_pattern < 1 || this.msg_pattern > 5) {

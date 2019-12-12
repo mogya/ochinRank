@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta content="width=320, user-scalable=no" name="viewport">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！">
+<meta name="description" content="あなたの太さはどれくらい？日本で何番目なのか見てみよう！">
 <meta property="og:url" content="https://mogya.github.io/ohinRank/" /> 
 <meta property="og:title" content="ギガントおちんちんランキング" /> 
-<meta property="og:image" content="https://mogya.github.io/ohinRank/img/can_coffee_ogp.png" /> 
-<meta property="og:description" content="あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！" /> 
+<meta property="og:image" content="https://mogya.github.io/ohinRank/img/coffee_ogp.png" />
+<meta property="og:description" content="あなたの太さはどれくらい？日本で何番目なのか見てみよう！" /> 
 <meta name="twitter:card" content="summary_large_image" /> 
 <meta name="twitter:site:id" content="mogya" /> 
 <title>ギガントおちんちんランキング</title>
@@ -75,7 +75,7 @@ body{
       おちんちん<br />
       ランキング🚀
     </a></h1>
-    <p class="subtitle">あなたの太さはどれくらい？全国平均どれくらいなのか見てみよう！</p>
+    <p class="subtitle">あなたの太さはどれくらい？<br />日本で何番目なのか見てみよう！</p>
   </div>
   <div v-show="!showResult" id="area_input" class="container">
     <p class="subtitle">
@@ -113,7 +113,7 @@ body{
     </div>
     <div class="field">
 	    <ul>
-        <li><i class="fas fa-lock"></i>入力された情報はどこにも送信されません(アクセス解析もつけてません)(<a href="https://github.com/mogya/ohinRank">ソースコード</a>も確認できるよ)</li>
+        <li><i class="fas fa-lock"></i>入力された情報はどこにも送信されません (アクセス解析もつけてません)</li>
         <li><i class="fas fa-lock-open"></i>Twitterで公開したら、もちろんみんなに大公開だ！フォロワーさんたちにきみの偉大さを知ってもらおう！</li>
 	    </ul>
     </div>
@@ -127,37 +127,48 @@ body{
       <div ref="area_result_text">
         <div v-if="msg_pattern==0">
           <img src="img/cannon.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のなかで一番です。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のなかで一番です。
           <p>🙅‍♀️たぶんそんなことはないから、測定方法をもう一回確認してね</p>
         </div>
         <div v-else-if="msg_pattern==1">
           <img src="img/cannon.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上位{{rank_num}}人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のうち、<br />{{rank_num}}番目くらい<br />(上から{{percentage_num}}%)に位置します。
+          </p>
           <p>めっちゃ巨根ですね👍</p>
         </div>
         <div v-else-if="msg_pattern==2">
           <img src="img/radish.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のうち、<br />{{rank_num}}番目くらい<br />(上から{{percentage_num}}%)に位置します。
           <p>巨根と言えるでしょう🐴</p>
         </div>
         <div v-else-if="msg_pattern==3">
           <img src="img/coffee.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、上から{{rank_num}}人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のうち、<br />{{rank_num}}番目くらい<br />(上から{{percentage_num}}%)に位置します。
+          </p>
           <p>平均的サイズと言えるでしょう🐼</p>
         </div>
         <div v-else-if="msg_pattern==4">
           <img src="img/battery.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のうち、<br />{{rank_num}}番目くらい<br />(上から{{percentage_num}}%)に位置します。
+          </p>
           <p>ちょっと細いほうかもしれません🦒</p>
         </div>
         <div v-else-if="msg_pattern==5">
           <img src="img/pencil.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、{{rank_num}}人目くらいに位置します。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のうち、<br />{{rank_num}}番目くらい<br />(上から{{percentage_num}}%)に位置します。
+          </p>
           <p>かなり細い方かも🦄</p>
           </div>
         <div v-else>
           <img src="img/pencil.png" style="width:200px;height:200px" />
-          <p>{{name}}さんのおちんちんの太さ {{value}}cmは、日本人男性6千万人のうち、一番細いみたいです。</p>
+          <p>{{name}}さんのおちんちんの太さ
+            {{value}}cmは、15歳以上の日本人男性およそ<br />53,560,000人のうち、一番細いみたい？
           <p>もしかして測り間違えの可能性もあると思うので、もう一度全力で測ってみてね</p>
           </div>
       </div>
@@ -178,8 +189,9 @@ body{
   </div>
   <div id="area_list" class="container">
     <ul>
-      <li>creater: <a href='https://twitter.com/mogya' target='_blank'>mogya</a></li>
-      <li>source code: <a href='https://github.com/mogya/ohinRank/' target='_blank'>mogya/ohinRank</a></li>
+      <li>元になったデータ: <a href='https://www.tenga.co.jp/special/fitting2012/' target='_blank'>TENGA FITTING</a></li>
+      <li>作者: <a href='https://twitter.com/mogya' target='_blank'>mogya</a></li>
+      <li>ソースコード: <a href='https://github.com/mogya/ohinRank/' target='_blank'>mogya/ohinRank</a></li>
     </ul>
   </div>
 
@@ -187,7 +199,7 @@ body{
 </body>
 </body>
 <script type="text/javascript">
-const user_count = 60000000;
+const user_count = 53560000;
 const point_classes = [
   // value:計測値 percentage:上位何%に入るか
   {value: 0, percentage: 100 },
@@ -199,62 +211,10 @@ const point_classes = [
   {value : 18.84, percentage : 0.9},
   {value : Infinity, percentage : 0},
 ];
-/**
-  * 数値を漢数字表記に変換
-  * @param  {String|Number} num - 半角数字
-  * @return {String} 漢数字表記
-  * @throws {TypeError} 半角数字以外の文字が含まれている場合
-  * @throws {RangeError} 数値が Number.MIN_SAFE_INTEGER ～ Number.MAX_SAFE_INTEGER の範囲外の場合
-  * https://note.kiriukun.com/entry/20181229-numbers-to-chinese-numerals
-  */
-function numbersToKanji(num) {
-  if (num === undefined || num === null || num === '') {
-    return '';
-  }
-  if (!(/^-?[0-9]+$/g.test(num))) {
-    throw new TypeError('半角数字以外の文字が含まれています。漢数字に変換できませんでした。-> ' + num);
-  }
-  num = Number(num);
-  if (!Number.isSafeInteger(num)) {
-    throw new RangeError('数値が ' + Number.MIN_SAFE_INTEGER + ' ～ ' + Number.MAX_SAFE_INTEGER + ' の範囲外です。漢数字に変換できませんでした。-> ' + num);
-  }
-  if (num === 0) {
-    return '零';
-  }
-  let ret = '';
-  if (num < 0) {
-    ret += 'マイナス';
-    num *= -1;
-  }
-  const numStr = num + '';
-  const kanjiNums = ['', '１', '２', '３', '４', '５', '６', '７', '８', '９'];
-  const kanjiNames = ['十', '百', '千', '万', '億', '兆', '京', '垓', '𥝱', '穣', '溝', '澗', '正', '載', '極', '恒河沙', '阿僧祇', '那由他', '不可思議', '無量大数'];
-  const exponents = [1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68];
-  const exponentsLen = exponents.length;
-  for (let i = exponentsLen; i >= 0; --i) {
-    const bias = Math.pow(10, exponents[i]);
-    if (num >= bias) {
-      const top = Math.floor(num / bias);
-      if (top >= 10) {
-        ret += numbersToKanji(top);
-      } else {
-        if (top == 1 && exponents[i] <= 3) {
-          // ※先頭の数字が1、かつ指数が3 (千の位) 以下の場合のみ『一』をつけない
-        } else {
-          ret += kanjiNums[top];
-        }
-      }
-      ret += kanjiNames[i];
-      num -= top * bias;
-    }
-  }
-  ret += kanjiNums[num];
-  return ret;
-};
 var app = new Vue({
   el: "#app",
   data: {
-    debug: false,
+    debug: true,
     loading: false,
     showResult: false,
     showHowto: false,
@@ -277,21 +237,16 @@ var app = new Vue({
       if (this.percentage !== 0){
         r = Math.ceil(user_count*this.percentage/100);
       }
-      // this.debug_log(`rank(u):${user_count}`);
-      // this.debug_log(`rank(p):${this.percentage}`);
-      // this.debug_log(`rank:${r}`);
+      this.debug_log(`rank(u):${user_count}`);
+      this.debug_log(`rank(p):${this.percentage}`);
+      this.debug_log(`rank:${r}`);
       return r;
     },
     rank_num: function () {
       if (!this.submitable) { return '' }
-      let ret = "";
-      if (this.rank < 10000000){
-        ret = numbersToKanji(this.rank)
-      }else{
-        // 四千六百六十三万三百十九番目、とか言われても意味分かんないので、万より下を切り捨てる
-        ret = numbersToKanji( Math.floor(this.rank/10000)*10000 )
-      }
-      return ret;
+      let ret = this.rank;
+      ret = ret.toLocaleString()
+      return ret
     },
     percentage: function () {
       if (!this.submitable) { return 0 }
@@ -301,7 +256,7 @@ var app = new Vue({
         (c[1].percentage-c[0].percentage) /
           (c[0].value-c[1].value) +
           c[0].percentage;
-      // this.debug_log(`percentage:${p}`);
+      this.debug_log(`percentage:${p}`);
       if (c[1].percentage === 0){ p = 0; }
       return p;
     },

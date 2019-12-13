@@ -23,6 +23,10 @@ export default {
   ** Global CSS
   */
   css: [
+    '@fortawesome/fontawesome-free-webfonts',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -38,7 +42,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
   ],
   /*
@@ -57,5 +60,8 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  generate: {
+    dir: 'docs'
   }
 }

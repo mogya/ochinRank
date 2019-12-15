@@ -128,7 +128,7 @@
       <ul>
         <li>元になったデータ: <a href='https://www.tenga.co.jp/special/fitting2012/' target='_blank'>TENGA FITTING</a></li>
         <li>作者: <a href='https://twitter.com/mogya' target='_blank'>mogya</a></li>
-        <li>ソースコード: <a href='https://github.com/mogya/ohinRank/' target='_blank'>mogya/ohinRank</a></li>
+        <li>ソースコード: <a href='https://github.com/mogya/ochinRank/' target='_blank'>mogya/ochinRank</a></li>
       </ul>
     </div>
   </div>
@@ -253,7 +253,7 @@ export default {
     updateTweet: function(){
       this.tweet_text = encodeURI(this.$refs.area_result_text.textContent.replace(/ +/g,''));
       this.tweet_hashtag = encodeURI("おちんちんランキング");
-      this.tweet_url = "https://mogya.github.io/ohinRank/" + this.msg_pattern + ".html";
+      this.tweet_url = "https://mogya.github.io/ochinRank/" + this.msg_pattern + ".html";
       if (this.msg_pattern < 1 || this.msg_pattern > 5) {
         this.tweet_url = "";
       }

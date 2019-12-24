@@ -110,10 +110,10 @@
             </div>
         </div>
       </div>
-      <div class="twitter" v-if="tweet_url != ''">
+      <div class="twitter" v-if="result_tweet_url != ''">
         <p>
-          <a :href="`https://twitter.com/intent/tweet?text=${tweet_text}&url=${tweet_url}&hashtags=${tweet_hashtag}`" target='_blank'>
-            <i class="fab fa-twitter-square"></i>ツイート画面を開く
+          <a :href="`https://twitter.com/intent/tweet?text=${result_tweet_text}&url=${result_tweet_url}&hashtags=${tweet_hashtag}`" target='_blank'>
+            <i class="fab fa-twitter-square"></i>この偉大な結果をみんなにシェア
           </a>
         </p>
       </div>
@@ -126,6 +126,11 @@
     </div>
     <div id="area_list" class="container">
       <ul>
+        <li>
+          <a :href="`https://twitter.com/intent/tweet?text=${share_tweet_text}&url=${share_tweet_url}&hashtags=${tweet_hashtag}`" target='_blank'>
+            <i class="fab fa-twitter-square">このサイトをみんなにシェア</i>
+          </a>
+        </li>
         <li>元になったデータ: <a href='https://www.tenga.co.jp/special/fitting2012/' target='_blank'>TENGA FITTING</a></li>
         <li>作者: <a href='https://twitter.com/mogya' target='_blank'>mogya</a></li>
         <li>ソースコード: <a href='https://github.com/mogya/ochinRank/' target='_blank'>mogya/ochinRank</a></li>
@@ -157,9 +162,11 @@ export default {
       showHowto: false,
       name: "",
       value: 0,
-      tweet_text: '',
-      tweet_url: '',
-      tweet_hashtag: ''
+      result_tweet_text: '',
+      result_tweet_url: '',
+      tweet_hashtag: encodeURI("おちんちんランキング"),
+      share_tweet_text: encodeURI("あなたの太さはどれくらい？ 日本で何番目なのか見てみよう！ ギガントおちんちんランキング🚀"),
+      share_tweet_url: "https://mogya.github.io/ochinRank/",
     }
   },
   computed: {
@@ -251,11 +258,10 @@ export default {
       }, 1000)
     },
     updateTweet: function(){
-      this.tweet_text = encodeURI(this.$refs.area_result_text.textContent.replace(/ +/g,''));
-      this.tweet_hashtag = encodeURI("おちんちんランキング");
-      this.tweet_url = "https://mogya.github.io/ochinRank/" + this.msg_pattern + ".html";
+      this.result_tweet_text = encodeURI(this.$refs.area_result_text.textContent.replace(/ +/g,''));
+      this.result_tweet_url = "https://mogya.github.io/ochinRank/" + this.msg_pattern + ".html";
       if (this.msg_pattern < 1 || this.msg_pattern > 5) {
-        this.tweet_url = "";
+        this.result_tweet_url = "";
       }
     },
     debug_log: function(msg){
